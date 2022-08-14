@@ -75,4 +75,15 @@ public class UserController {
     public ResultVo batchGetUserInfo(){
         return userService.batchGetUserInfo();
     }
+
+    /**
+     * 根据用户id查询有关的产品信息
+     * 1、根据userId查询对应的订单id
+     * 2、根据订单id查询与之有关的产品id
+     * 3、根据产品id查询对应的产品信息
+     */
+    @GetMapping("/getProductInfoByUserId")
+    public ResultVo getProductInfoByUserId(@RequestParam(value = "id",required = false) Integer userId){
+        return userService.getProductInfoByUserId(userId);
+    }
 }

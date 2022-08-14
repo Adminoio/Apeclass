@@ -61,4 +61,13 @@
             #{item}
         </foreach>
     </delete>
+
+    <select id="getProductInfoByUserId" parameterType="integer" resultType="com.jin.entity.po.ProductPo">
+        SELECT * FROM product_table WHERE id IN
+        (
+        SELECT productId FROM order_product_table WHERE orderId IN
+        (
+        SELECT id FROM order_table WHERE userId = #{userId})
+        );
+    </select>
 </mapper>

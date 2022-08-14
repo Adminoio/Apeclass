@@ -15,30 +15,30 @@ public interface OrderMapper extends BaseMapper<OrderPo> {
     /**
      * 根据条件查询产品个数
      */
-    Integer getProductNums(OrderDto orderDto);
+    Integer getOrderNums(OrderDto orderDto);
 
     /**
      * 根据条件获取产品详情
      */
-    List getProductDetails(OrderDto orderDto);
+    List getOrderDetails(OrderDto orderDto);
 
     /**
      * 新增产品信息的方法
      */
-    Integer setProductInfo(OrderDto orderDto);
+    Integer setOrderInfo(OrderDto orderDto);
 
     /**
      * 更新产品信息的方法
      */
-    Integer updateProductInfo(OrderDto orderDto);
+    Integer updateOrderInfo(OrderDto orderDto);
 
     /**
      * 根据id删除产品信息
      */
-    Integer deleteProductInfo(Integer id);
+    Integer deleteOrderInfo(Integer id);
 
     /**
      * 根据id批量删除产品信息
      */
-    Integer batchDeleteProductInfo(List<Integer> idList);
+    Integer batchDeleteOrderInfo(List<Integer> idList);
 }

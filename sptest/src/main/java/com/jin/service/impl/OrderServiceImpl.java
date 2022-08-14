@@ -26,7 +26,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public ResultVo getOrderNums(OrderDto orderDto) {
-        return ResultUtils.success("查询成功", "产品的总数量为" + orderMapper.getProductNums(orderDto));
+        return ResultUtils.success("查询成功", "产品的总数量为" + orderMapper.getOrderNums(orderDto));
     }
 
     /**
@@ -34,7 +34,15 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public ResultVo getOrderDetails(OrderDto orderDto) {
-        return ResultUtils.success("查询成功", orderMapper.getProductDetails(orderDto));
+
+//        当orderDto没有传输有关pageNum和pageSize的参数时，应当分别给予一个默认的值
+//        if (orderDto.getPageNum()==null||orderDto.getPageNum()==0) {
+//            orderDto.setPageNum(5);
+//        }
+//        if (orderDto.getPageSize()==null||orderDto.getPageSize()==0) {
+//            orderDto.setPageSize(0);
+//        }
+        return ResultUtils.success("查询成功", orderMapper.getOrderDetails(orderDto));
     }
 
     /**
@@ -50,7 +58,7 @@ public class OrderServiceImpl implements OrderService {
             return ResultUtils.failed("产品名称不能为空或者空串");
         }
 
-        Integer integer = orderMapper.setProductInfo(orderDto);
+        Integer integer = orderMapper.setOrderInfo(orderDto);
         if (integer > 0) {
             return ResultUtils.success("添加成功");
         }
@@ -66,7 +74,7 @@ public class OrderServiceImpl implements OrderService {
             return ResultUtils.failed("当前对象或者当前对象ID为空");
         }
 
-        Integer integer = orderMapper.updateProductInfo(orderDto);
+        Integer integer = orderMapper.updateOrderInfo(orderDto);
         if (integer > 0) {
             return ResultUtils.success("更新成功");
         }
@@ -85,7 +93,7 @@ public class OrderServiceImpl implements OrderService {
 
             return ResultUtils.failed("传入的用户ID不能为空");
         }
-        Integer integer = orderMapper.deleteProductInfo(id);
+        Integer integer = orderMapper.deleteOrderInfo(id);
         if (integer > 0) {
             return ResultUtils.success("删除成功");
         }
@@ -100,7 +108,7 @@ public class OrderServiceImpl implements OrderService {
         if (idList == null || idList.size() == 0) {
             return ResultUtils.success("请提供需要删除的id");
         }
-        Integer integer = orderMapper.batchDeleteProductInfo(idList);
+        Integer integer = orderMapper.batchDeleteOrderInfo(idList);
         if (integer > 0) {
             return ResultUtils.success("批量删除操作成功", integer);
         }

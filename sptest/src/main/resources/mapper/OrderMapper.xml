@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jin.dao.OrderMapper">
+    <select id="getOrderNums" resultType="integer"  parameterType="com.jin.entity.dto.OrderDto">
+        SELECT COUNT(*) FROM order_table WHERE 1=1
+        <if test="id !=null and id!=''">
+            AND id=#{id}
+        </if>
+        <if test="name !=null and name!=''">
+            AND name=#{name}
+        </if>
+
+        <if test="type !=null and type!=''">
+            AND type=#{type}
+        </if>
+
+        <if test="userId !=null and userId!=''">
+            AND userId=#{userId}
+        </if>
+    </select>
+
+    <select id="getOrderDetails" parameterType="com.jin.entity.dto.OrderDto" resultType="com.jin.entity.po.OrderPo">
+        SELECT * FROM order_table WHERE 1=1
+        <if test="id !=null and id!=''">
+            AND id=#{id}
+        </if>
+        <if test="name !=null and name !=''">
+            AND name=#{name}
+        </if>
+
+        <if test="type !=null and type !=''">
+            AND type=#{type}
+        </if>
+        <if test="userId !=null and userId !=''">
+            AND userId=#{userId}
+        </if>
+        <if test="pageNum !=null and pageNum !=''">
+            LIMIT #{pageSize},#{pageNum}
+        </if>
+    </select>
+
+    <insert id="setOrderInfo" parameterType="com.jin.entity.dto.OrderDto">
+        INSERT INTO order_table(name,type,userId) VALUE (#{name},#{type},#{userId})
+    </insert>
+
+    <update id="updateOrderInfo" parameterType="com.jin.entity.dto.OrderDto">
+        UPDATE order_table SET name=#{name},type=#{type},userId=#{userId} WHERE id=#{id}
+    </update>
+
+    <delete id="deleteOrderInfo" >
+        DELETE FROM order_table WHERE  id=#{id}
+    </delete>
+
+    <delete id="batchDeleteOrderInfo" >
+        DELETE FROM order_table WHERE  id IN
+        <foreach collection="idList" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+</mapper>

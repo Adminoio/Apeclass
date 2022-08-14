@@ -2,6 +2,8 @@ package com.jin.service;
 
 import com.jin.entity.dto.UserDto;
 import com.jin.entity.vo.ResultVo;
+import org.springframework.web.bind.annotation.GetMapping;
+
 import java.util.List;
 
 /**
@@ -43,4 +45,13 @@ public interface UserService {
      * 通过MuBatis-plus来批量获取用户信息
      */
     ResultVo batchGetUserInfo();
+
+    /**
+     * 根据用户id查询有关的产品信息
+     * 1、根据userId查询对应的订单id
+     * 2、根据订单id查询与之有关的产品id
+     * 3、根据产品id查询对应的产品信息
+     */
+    ResultVo getProductInfoByUserId(Integer userId);
+
 }

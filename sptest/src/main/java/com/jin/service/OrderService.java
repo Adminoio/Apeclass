@@ -31,7 +31,7 @@ public interface OrderService {
      * 根据id删除订单信息
      */
     ResultVo deleteOrderInfo(Integer id);
-    
+
     /**
      * 根据id批量删除订单信息
      */

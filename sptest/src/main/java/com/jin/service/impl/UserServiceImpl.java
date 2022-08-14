@@ -2,6 +2,7 @@ package com.jin.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.jin.dao.UserMapper;
 import com.jin.entity.dto.UserDto;
+import com.jin.entity.po.ProductPo;
 import com.jin.entity.po.UserPo;
 import com.jin.entity.vo.ResultVo;
 import com.jin.service.UserService;
@@ -125,4 +126,13 @@ public class UserServiceImpl implements UserService {
         return ResultUtils.success("查询成功。",userPoList);
     }
 
+    @Override
+    public ResultVo getProductInfoByUserId(Integer userId) {
+        if (userId == null) {
+            logger.warning("传入的用户ID不能为空");
+
+            return ResultUtils.failed("传入的用户ID不能为空");
+        }
+        return ResultUtils.success("查询成功",userMapper.getProductInfoByUserId(userId));
+    }
 }
