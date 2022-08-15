@@ -1,11 +1,8 @@
 package com.jin.controller;
 
 import com.jin.entity.dto.ProductDto;
-
-
 import com.jin.entity.vo.ResultVo;
 import com.jin.service.ProductService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +12,7 @@ import java.util.List;
  * 产品控制层
  */
 //将当前Controller作为bean在spring中注册
-    //将下方所有方法以json形式返回
+//将下方所有方法以json形式返回
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -51,7 +48,7 @@ public class ProductController {
      * 更新产品信息的方法
      */
     @PutMapping("/updateProductInfo")
-    public ResultVo updateProductInfo(@RequestBody(required = false) ProductDto productDto){
+    public ResultVo updateProductInfo(@RequestBody(required = false) ProductDto productDto) {
         return productService.updateProductInfo(productDto);
     }
 
@@ -59,7 +56,7 @@ public class ProductController {
      * 根据id删除产品信息
      */
     @DeleteMapping("/deleteProductInfo")
-    public  ResultVo deleteProductInfo(Integer id){
+    public ResultVo deleteProductInfo(Integer id) {
         return productService.deleteProductInfo(id);
     }
 
@@ -67,7 +64,7 @@ public class ProductController {
      * 根据id批量删除产品信息
      */
     @DeleteMapping("/batchDeleteProductInfo")
-    public  ResultVo batchDeleteProductInfo(@RequestParam(value = "idList",required = false) List<Integer> idList){
+    public ResultVo batchDeleteProductInfo(@RequestParam(value = "idList", required = false) List<Integer> idList) {
         return productService.batchDeleteProductInfo(idList);
     }
 }

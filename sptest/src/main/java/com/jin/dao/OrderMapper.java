@@ -2,15 +2,16 @@ package com.jin.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.jin.entity.dto.OrderDto;
-import com.jin.entity.dto.ProductDto;
 import com.jin.entity.po.OrderPo;
-import lombok.Data;
+import org.apache.ibatis.annotations.Mapper;
+
 
 import java.util.List;
 
 /**
  * 订单Mapper
  */
+
 public interface OrderMapper extends BaseMapper<OrderPo> {
     /**
      * 根据条件查询产品个数

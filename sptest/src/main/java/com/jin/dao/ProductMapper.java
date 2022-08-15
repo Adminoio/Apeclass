@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.jin.entity.dto.ProductDto;
 import com.jin.entity.po.ProductPo;
 import com.jin.entity.vo.ResultVo;
-
+import org.apache.ibatis.annotations.Mapper;
 
 
 import java.util.List;
@@ -12,6 +12,7 @@ import java.util.List;
 /**
  * 产品Mapper
  */
+
 public interface ProductMapper extends BaseMapper<ProductPo> {
     /**
      * 根据条件查询产品个数

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jin.dao.ScoreMapper">
+
+    <select id="selectTotalScore" resultType="integer" parameterType="integer">
+        SELECT SUM(l1.scoreNum) FROM (SELECT scoreNum FROM product_table WHERE id IN (SELECT productId FROM product_order_table WHERE orderId=#{id})) l1
+    </select>
+
+    <select id="selectScoreByUserId" resultType="com.jin.entity.po.ScorePo" parameterType="integer">
+        SELECT st.userId,st.scoreNum FROM(SELECT userId FROM order_table WHERE id=#{id}) l1 LEFT JOIN score_table st ON l1.userId=st.userId;
+    </select>
+
+    <insert id="updateUserScore" parameterType="com.jin.entity.po.ScorePo">
+        INSERT INTO score_table(userId,scoreNum) VALUE (#{userId},#{scoreNum}) ON DUPLICATE KEY UPDATE scoreNum=#{scoreNum};
+    </insert>
+</mapper>
